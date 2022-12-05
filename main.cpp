@@ -57,7 +57,6 @@ void GetData(string filepath, vector<Houses>& housesset)
 void mergePrice(vector<Houses>& vec, int left, int middle, int right)
 {
 
-
 }
 void mergeSortOnPrice(vector<Houses>& vec, int begin, int end){
     int mid = 0;
