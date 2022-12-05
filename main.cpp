@@ -153,7 +153,7 @@ int main() {
 
     }
 
-    PrintData(housesSet);
+    //PrintData(housesSet);
 
     return 0;
 }
