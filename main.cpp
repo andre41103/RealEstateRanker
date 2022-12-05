@@ -20,13 +20,17 @@ void GetData(string filepath, vector<Houses>& housesset)
             int radius;
             int beds;
             int baths;
-
+            string firstParenthesis;
+            string eliminateComma;
             string tempPrice;
             string tempRadius;
             string tempBeds;
             string tempBaths;
+            getline(stream,firstParenthesis, '"');
 
-            getline(stream, address, ',');
+            getline(stream, address, '"'); //ends at second parenthesis
+
+            getline(stream, eliminateComma, ',');
 
             getline(stream, tempPrice, ',');
             price = stoi(tempPrice);
@@ -49,8 +53,43 @@ void GetData(string filepath, vector<Houses>& housesset)
     }
 
 }
+void mergeSortOnPrice(){
+
+}
+void mergeSortOnLocation()
+{
+
+}
+void shellSortOnPrice()
+{
+
+}
+void shellSortOnLocation()
+{
+
+}
 int main() {
     vector<Houses> housesSet;
+    GetData("HouseDetail.csv", housesSet);
+    string ignore;
+    int prioritySelection = 0;
+    //ask for priority if either the user want prefers price or location
+    cout << "Welcome to your Real Estate Ranker!" << endl;
+    cout << "In this ranker, we will display your top 5 home option based on your priority" << endl;
+    cout << "The priorities that you can select are either price or location nearest you" << endl;
+    cout << "ARE YOU READY?" << endl;
+    cin >> ignore;
+    cout << "Which priority do you prefer? Price(insert 1) or Location(insert 2)" << endl;
+    cin >> prioritySelection;
+
+    //if the user picks price, we will perform shell and merge sort on the price values
+    //if the user picks location, we will perform shell and merge sort on the radius values
+    if(prioritySelection == 1)
+    {
+        //call merge and shell sort on price
+
+    }
+
 
     return 0;
 }
