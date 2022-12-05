@@ -60,6 +60,14 @@ void mergeSortOnLocation()
 {
 
 }
+void mergeLocation()
+{
+
+}
+void mergePrice()
+{
+
+}
 void shellSortOnPrice()
 {
 
