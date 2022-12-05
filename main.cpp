@@ -73,7 +73,24 @@ void mergePrice(vector<Houses>& vec, int left, int middle, int right)
     int leftIndex =0;
     int rightIndex = 0;
     int merge = left;
-
+    while(leftIndex < leftS && rightIndex < rightS) //checking indexes
+    {
+        if(leftVec[leftIndex].GetPrice() <= rightVec[rightIndex].GetPrice())
+        {
+            vec[merge++] = leftVec[leftIndex++];
+        }
+        else if (leftVec[leftIndex].GetPrice() > rightVec[rightIndex].GetPrice()){
+            vec[merge++] = rightVec[rightIndex++];
+        }
+    }
+    while(leftIndex < leftS)
+    {
+        vec[merge++] = leftVec[leftIndex++];
+    }
+    while(rightIndex < rightS)
+    {
+        vec[merge++] = rightVec[rightIndex++];
+    }
 }
 void mergeSortOnPrice(vector<Houses>& vec, int begin, int end){
     int mid = 0;
