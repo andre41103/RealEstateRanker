@@ -131,13 +131,38 @@ void mergeLocation()
 
 }
 
-void shellSortOnPrice()
+void shellSortOnPrice(vector<Houses>& houses)
 {
 
+    int newLoc = 0;
+    for(int gap = houses.size()/2; gap > 0; gap /= 2){
+        for(int i = gap; i < houses.size(); i++){
+            Houses temp = houses[i];
+            newLoc = 0;
+
+            for(newLoc = i; newLoc >= gap && houses[newLoc - gap].GetPrice() > temp.GetPrice(); newLoc -= gap){
+                houses[newLoc] = houses[newLoc - gap];
+            }
+
+            houses[newLoc]= temp;
+        }
+    }
 }
-void shellSortOnLocation()
+void shellSortOnLocation(vector<Houses>& houses)
 {
+    int newLoc = 0;
+    for(int gap = houses.size()/2; gap > 0; gap /= 2){
+        for(int i = gap; i < houses.size(); i++){
+            Houses temp = houses[i];
+            newLoc = 0;
 
+            for(newLoc = i; newLoc >= gap && houses[newLoc - gap].GetRadius() > temp.GetRadius(); newLoc -= gap){
+                houses[newLoc] = houses[newLoc - gap];
+            }
+
+            houses[newLoc] = temp;
+        }
+    }
 }
 int main() {
     vector<Houses> housesSet;
@@ -177,7 +202,7 @@ int main() {
         else if(sortSelection == 2)
         {
             int k = 1;
-            shellSortOnPrice();
+            shellSortOnPrice(housesSort);
             for(int i = 0; i < 10; i++)
             {
                 cout << k << ". " << housesSet[i] << endl;
@@ -206,7 +231,7 @@ int main() {
         else if(sort == 2)
         {
             int k = 1;
-            shellSortOnLocation();
+            shellSortOnLocation(housesSet);
             for(int i = 0; i < 10; i++)
             {
                 cout << k << ". " << housesSet[i] << endl;
