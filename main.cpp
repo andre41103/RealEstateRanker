@@ -123,13 +123,38 @@ void mergeLocation()
 
 }
 
-void shellSortOnPrice()
+void shellSortOnPrice(vector<Houses>& houses)
 {
 
+    int newLoc = 0;
+    for(int gap = houses.size()/2; gap > 0; gap /= 2){
+        for(int i = gap; i < houses.size(); i++){
+            Houses temp = houses[i];
+            newLoc = 0;
+
+            for(newLoc = i; newLoc >= gap && houses[newLoc - gap].GetPrice() > temp.GetPrice(); newLoc -= gap){
+                houses[newLoc] = houses[newLoc - gap];
+            }
+
+            houses[newLoc]= temp;
+        }
+    }
 }
-void shellSortOnLocation()
+void shellSortOnLocation(vector<Houses>& houses)
 {
+    int newLoc = 0;
+    for(int gap = houses.size()/2; gap > 0; gap /= 2){
+        for(int i = gap; i < houses.size(); i++){
+            Houses temp = houses[i];
+            newLoc = 0;
 
+            for(newLoc = i; newLoc >= gap && houses[newLoc - gap].GetRadius() > temp.GetRadius(); newLoc -= gap){
+                houses[newLoc] = houses[newLoc - gap];
+            }
+
+            houses[newLoc] = temp;
+        }
+    }
 }
 int main() {
     vector<Houses> housesSet;
