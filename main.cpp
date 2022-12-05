@@ -54,6 +54,15 @@ void GetData(string filepath, vector<Houses>& housesset)
     }
 
 }
+void PrintData(vector<Houses>& housesSet)
+{
+    cout << "Size of Data: " << housesSet.size() << endl;
+    for(int i = 0; i < housesSet.size(); i++)
+    {
+        
+        cout << "Address: " <<  housesSet[i].GetAddress() << " :: Price: " << housesSet[i].GetPrice() << endl;
+    }
+}
 void mergePrice(vector<Houses>& vec, int left, int middle, int right)
 {
     int leftS = middle - left + 1; // left size of the array
@@ -123,11 +132,11 @@ void shellSortOnLocation()
 }
 int main() {
     vector<Houses> housesSet;
-    GetData("HouseDetail.csv", housesSet);
+    GetData("HouseDetails.csv", housesSet);
     string ignore;
     int prioritySelection = 0;
     //ask for priority if either the user want prefers price or location
-    cout << std::setw(32) << "Welcome to your Real Estate Ranker!" << std::setw(32) << endl;
+    cout << setw(32)  << right << "Welcome to your Real Estate Ranker!" << endl;
     cout << "In this ranker, we will display your top 5 home option based on your priority" << endl;
     cout << "The priorities that you can select are either price or location nearest you" << endl;
     cout << setw(8) <<"ARE YOU READY?" << endl;
@@ -144,6 +153,7 @@ int main() {
 
     }
 
+    PrintData(housesSet);
 
     return 0;
 }
