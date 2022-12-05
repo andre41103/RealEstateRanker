@@ -274,8 +274,6 @@ int main() {
         }
     }
 
-
-
     //PrintData(housesSet);
 
     return 0;
