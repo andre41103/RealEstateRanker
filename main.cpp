@@ -194,7 +194,7 @@ int main() {
         else if(sortSelection == 2)
         {
             int k = 1;
-            shellSortOnPrice();
+            shellSortOnPrice(housesSort);
             for(int i = 0; i < 10; i++)
             {
                 cout << k << ". " << housesSet[i] << endl;
@@ -223,7 +223,7 @@ int main() {
         else if(sort == 2)
         {
             int k = 1;
-            shellSortOnLocation();
+            shellSortOnLocation(housesSet);
             for(int i = 0; i < 10; i++)
             {
                 cout << k << ". " << housesSet[i] << endl;
