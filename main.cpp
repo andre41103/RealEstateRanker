@@ -226,20 +226,20 @@ int main() {
         if(sortSelection == 1)
         {
             int j = 1;
-            mergeSortOnPrice(housesSet, 0, housesSet.length()-1);
+            mergeSortOnPrice(housesSet, 0, housesSet.size()-1);
             for(int i = 0; i < 10; i++)
             {
-                cout << j << ". " << housesSet[i] << endl;
+                cout << j << ". " << housesSet[i].GetAddress() << endl;
                 ++j;
             }
         }
         else if(sortSelection == 2)
         {
             int k = 1;
-            shellSortOnPrice(housesSort);
+            shellSortOnPrice(housesSet);
             for(int i = 0; i < 10; i++)
             {
-                cout << k << ". " << housesSet[i] << endl;
+                cout << k << ". " << housesSet[i].GetAddress() << endl;
                 ++k;
             }
         }
@@ -258,7 +258,7 @@ int main() {
             mergeSortOnLocation(housesSet, 0, housesSet.size()-1);
             for(int i = 0; i < 10; i++)
             {
-                cout << j << ". " << housesSet[i] << endl;
+                cout << j << ". " << housesSet[i].GetAddress() << endl;
                 ++j;
             }
         }
@@ -268,7 +268,7 @@ int main() {
             shellSortOnLocation(housesSet);
             for(int i = 0; i < 10; i++)
             {
-                cout << k << ". " << housesSet[i] << endl;
+                cout << k << ". " << housesSet[i].GetAddress() << endl;
                 ++k;
             }
         }
