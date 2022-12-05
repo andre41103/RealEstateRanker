@@ -126,9 +126,43 @@ void mergeSortOnLocation(vector<Houses>& vec, int begin, int end)
         mergePrice(vec, begin, mid, end);
     }
 }
-void mergeLocation()
+void mergeLocation(vector<Houses>& vec, int left, int middle, int right)
 {
+    int leftS = middle - left + 1; // left size of the array
+    int rightS = right - middle; // right size of the array
 
+    vector<Houses> leftVec;
+    vector<Houses> rightVec;
+
+    for(int i = 0; i < leftS; i++)
+    {
+        leftVec.push_back(vec[left+i]); // it is copying the left side of the vec vector on the left vector
+    }
+    for(int j = 0; j < rightS; j++)
+    {
+        rightVec.push_back(vec[middle+j+1]); // it is copying the right side of the vec vector on the right vector
+    }
+    int leftIndex =0;
+    int rightIndex = 0;
+    int merge = left;
+    while(leftIndex < leftS && rightIndex < rightS) //checking indexes
+    {
+        if(leftVec[leftIndex].GetRadius() <= rightVec[rightIndex].GetRadius())
+        {
+            vec[merge++] = leftVec[leftIndex++];
+        }
+        else if (leftVec[leftIndex].GetPrice() > rightVec[rightIndex].GetPrice()){
+            vec[merge++] = rightVec[rightIndex++];
+        }
+    }
+    while(leftIndex < leftS)
+    {
+        vec[merge++] = leftVec[leftIndex++];
+    }
+    while(rightIndex < rightS)
+    {
+        vec[merge++] = rightVec[rightIndex++];
+    }
 }
 
 void shellSortOnPrice(vector<Houses>& houses)
