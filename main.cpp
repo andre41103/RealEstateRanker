@@ -4,6 +4,7 @@
 #include <sstream>
 #include <fstream>
 #include <iomanip>
+#include <chrono>
 using namespace std;
 
 void GetData(string filepath, vector<Houses>& housesset)
@@ -136,8 +137,9 @@ int main() {
     string ignore;
     int prioritySelection = 0;
     //ask for priority if either the user want prefers price or location
-    cout << setw(32)  << right << "Welcome to your Real Estate Ranker!" << endl;
-    cout << "In this ranker, we will display your top 5 home option based on your priority" << endl;
+    cout << "Welcome to your Real Estate Ranker!" << endl;
+    cout << "------------------------" << endl;
+    cout << "In this ranker, we will display your top 10 home option based on your priority" << endl;
     cout << "The priorities that you can select are either price or location nearest you" << endl;
     cout << setw(8) <<"ARE YOU READY?" << endl;
     cin >> ignore;
@@ -148,10 +150,64 @@ int main() {
     //if the user picks location, we will perform shell and merge sort on the radius values
     if(prioritySelection == 1)
     {
+        int sortSelection = 0;
+        cout << "Select: " << endl;
+        cout << "1. Ranking using Merge Sort" << endl;
+        cout << "2. Ranking using Shell Sort" << endl;
+        cin >> sortSelection;
         //call merge and shell sort on price
-
+        if(sortSelection == 1)
+        {
+            int j = 1;
+            mergeSortOnPrice(housesSet, 0, housesSet.length()-1);
+            for(int i = 0; i < 10; i++)
+            {
+                cout << j << ". " << housesSet[i] << endl;
+                ++j;
+            }
+        }
+        else if(sortSelection == 2)
+        {
+            int k = 1;
+            shellSortOnPrice();
+            for(int i = 0; i < 10; i++)
+            {
+                cout << k << ". " << housesSet[i] << endl;
+                ++k;
+            }
+        }
 
     }
+    else if(prioritySelection == 2)
+    {
+        int sort = 0;
+        cout << "Select: " << endl;
+        cout << "1. Ranking using Merge Sort" << endl;
+        cout << "2. Ranking using Shell Sort" << endl;
+        cin >> sort;
+        if(sort == 1)
+        {
+            int j = 1;
+            mergeSortOnLocation();
+            for(int i = 0; i < 10; i++)
+            {
+                cout << j << ". " << housesSet[i] << endl;
+                ++j;
+            }
+        }
+        else if(sort == 2)
+        {
+            int k = 1;
+            shellSortOnLocation();
+            for(int i = 0; i < 10; i++)
+            {
+                cout << k << ". " << housesSet[i] << endl;
+                ++k;
+            }
+        }
+    }
+
+
 
     //PrintData(housesSet);
 
