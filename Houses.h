@@ -44,3 +44,11 @@ int Houses::GetBeds() {
 int Houses::GetBaths() {
     return baths;
 }
+void Houses::SetPrice(int price_)
+{
+    this->price = price_;
+}
+void Houses::SetRadius(int radius_)
+{
+    this->price = radius_;
+}
