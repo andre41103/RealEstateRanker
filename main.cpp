@@ -114,9 +114,17 @@ void mergeSortOnPrice(vector<Houses>& vec, int begin, int end){
     }
 
 }
-void mergeSortOnLocation()
+void mergeSortOnLocation(vector<Houses>& vec, int begin, int end)
 {
-
+    int mid = 0;
+    int add = begin + end;
+    if(begin < end) // it will end when they both equal each other
+    {
+        mid = add/2;
+        mergeSortOnPrice(vec, begin, mid); // performs merge sort on the first half of the vector
+        mergeSortOnPrice(vec, mid + 1, end); // performs merge sort on the second half of the vector
+        mergePrice(vec, begin, mid, end);
+    }
 }
 void mergeLocation()
 {
@@ -188,7 +196,7 @@ int main() {
         if(sort == 1)
         {
             int j = 1;
-            mergeSortOnLocation();
+            mergeSortOnLocation(housesSet, 0, housesSet.size()-1);
             for(int i = 0; i < 10; i++)
             {
                 cout << j << ". " << housesSet[i] << endl;
