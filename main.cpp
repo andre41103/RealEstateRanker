@@ -208,8 +208,11 @@ int main() {
     cout << "------------------------" << endl;
     cout << "In this ranker, we will display your top 10 home option based on your priority" << endl;
     cout << "The priorities that you can select are either price or location nearest you" << endl;
-    cout << setw(8) <<"ARE YOU READY?" << endl;
+    cout << "ARE YOU READY?" << endl;
     cin >> ignore;
+    string city;
+    cout << "Where do you live?" << endl;
+    cin >> city;
     cout << "Which priority do you prefer? Price(insert 1) or Location(insert 2)" << endl;
     cin >> prioritySelection;
 
@@ -229,7 +232,12 @@ int main() {
             mergeSortOnPrice(housesSet, 0, housesSet.size()-1);
             for(int i = 0; i < 10; i++)
             {
-                cout << j << ". " << housesSet[i].GetAddress() << endl;
+                cout << j << ". " <<"Address: " <<housesSet[i].GetAddress() << endl;
+                cout << "Price: " << housesSet[i].GetPrice() << endl;
+                cout << "Radius: " << housesSet[i].GetRadius() << endl;
+                cout << "Beds: " <<  housesSet[i].GetBeds() << endl;
+                cout << "Baths: " << housesSet[i].GetBaths() << endl;
+                cout << endl;
                 ++j;
             }
         }
@@ -239,7 +247,13 @@ int main() {
             shellSortOnPrice(housesSet);
             for(int i = 0; i < 10; i++)
             {
-                cout << k << ". " << housesSet[i].GetAddress() << endl;
+                cout << k << ". " <<"Address: " <<housesSet[i].GetAddress() << endl;
+                cout << "Price: " << housesSet[i].GetPrice() << endl;
+                cout << "Radius: " << housesSet[i].GetRadius() << endl;
+                cout << "Beds: " <<  housesSet[i].GetBeds() << endl;
+                cout << "Baths: " << housesSet[i].GetBaths() << endl;
+                cout << endl;
+
                 ++k;
             }
         }
@@ -258,7 +272,13 @@ int main() {
             mergeSortOnLocation(housesSet, 0, housesSet.size()-1);
             for(int i = 0; i < 10; i++)
             {
-                cout << j << ". " << housesSet[i].GetAddress() << endl;
+                cout << j << ". " <<"Address: " <<housesSet[i].GetAddress() << endl;
+                cout << "Price: " << housesSet[i].GetPrice() << endl;
+                cout << "Radius: " << housesSet[i].GetRadius() << endl;
+                cout << "Beds: " <<  housesSet[i].GetBeds() << endl;
+                cout << "Baths: " << housesSet[i].GetBaths() << endl;
+                cout << endl;
+
                 ++j;
             }
         }
@@ -268,13 +288,17 @@ int main() {
             shellSortOnLocation(housesSet);
             for(int i = 0; i < 10; i++)
             {
-                cout << k << ". " << housesSet[i].GetAddress() << endl;
+                cout << k << ". " <<"Address: " <<housesSet[i].GetAddress() << endl;
+                cout << "Price: " << housesSet[i].GetPrice() << endl;
+                cout << "Radius: " << housesSet[i].GetRadius() << endl;
+                cout << "Beds: " <<  housesSet[i].GetBeds() << endl;
+                cout << "Baths: " << housesSet[i].GetBaths() << endl;
+                cout << endl;
+
                 ++k;
             }
         }
     }
-
-
 
     //PrintData(housesSet);
 
