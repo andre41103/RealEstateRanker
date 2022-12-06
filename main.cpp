@@ -121,8 +121,8 @@ void mergeSortOnLocation(vector<Houses>& vec, int begin, int end)
     if(begin < end) // it will end when they both equal each other
     {
         mid = add/2;
-        mergeSortOnPrice(vec, begin, mid); // performs merge sort on the first half of the vector
-        mergeSortOnPrice(vec, mid + 1, end); // performs merge sort on the second half of the vector
+        mergeSortOnLocation(vec, begin, mid); // performs merge sort on the first half of the vector
+        mergeSortOnLocation(vec, mid + 1, end); // performs merge sort on the second half of the vector
         mergePrice(vec, begin, mid, end);
     }
 }
