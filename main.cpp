@@ -151,7 +151,7 @@ void mergeLocation(vector<Houses>& vec, int left, int middle, int right)
         {
             vec[merge++] = leftVec[leftIndex++];
         }
-        else if (leftVec[leftIndex].GetPrice() > rightVec[rightIndex].GetPrice()){
+        else if (leftVec[leftIndex].GetRadius() > rightVec[rightIndex].GetRadius()){
             vec[merge++] = rightVec[rightIndex++];
         }
     }
