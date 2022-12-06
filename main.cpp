@@ -189,8 +189,8 @@ void shellSortOnPrice(vector<Houses>& houses) //reference to sorting discussion 
 void shellSortOnLocation(vector<Houses>& houses) 
 {
     int newLoc = 0;
-    for(int gap = houses.size()/2; gap > 0; gap /= 2){
-        for(int i = gap; i < houses.size(); i++){
+    for(int gap = houses.size()/2; gap > 0; gap /= 2){ // lowers the gap
+        for(int i = gap; i < houses.size(); i++){ //performs the insertion sort
             Houses temp = houses[i];
             newLoc = 0;
 
@@ -198,7 +198,7 @@ void shellSortOnLocation(vector<Houses>& houses)
                 houses[newLoc] = houses[newLoc - gap];
             }
 
-            houses[newLoc] = temp;
+            houses[newLoc] = temp; // puts the element in the correct position
         }
     }
 }
