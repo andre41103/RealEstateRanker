@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iomanip>
 #include <chrono>
+using namespace std::chrono;
 using namespace std;
 
 void GetData(string filepath, vector<Houses>& housesset)
@@ -235,8 +236,11 @@ int main() {
             cout << "----------" << endl;
             int j = 1;
             //will include chronos clock to calcualte how fast the function takes to execute
-
+            auto start = high_resolution_clock::now();
             mergeSortOnPrice(housesSet, 0, housesSet.size()-1);
+            auto stop = high_resolution_clock::now();
+            auto duration = duration_cast<microseconds>(stop - start);
+            cout << "Elapsed Time: " << duration.count() << " microseconds" << endl;
             for(int i = 0; i < 10; i++) //prints out the top 10 houses
             {
                 cout << j << ". " <<"Address: " <<housesSet[i].GetAddress() << endl;
@@ -254,8 +258,11 @@ int main() {
             cout << "----------" << endl;
             int k = 1;
             //will include chronos clock to calculate how fast the function takes to execute
-
+            auto start = high_resolution_clock::now();
             shellSortOnPrice(housesSet);
+            auto stop = high_resolution_clock::now();
+            auto duration = duration_cast<microseconds>(stop - start);
+            cout << "Elapsed Time: " << duration.count() << " microseconds" << endl;
             for(int i = 0; i < 10; i++) //prints out the top 10 houses
             {
                 cout << k << ". " <<"Address: " <<housesSet[i].GetAddress() << endl;
@@ -283,8 +290,11 @@ int main() {
             cout << "City: " << city << endl;
             cout << "----------" << endl;
             //will include chronos clock to calcualte how fast the function takes to execute
-
+            auto start = high_resolution_clock::now();
             mergeSortOnLocation(housesSet, 0, housesSet.size()-1);
+            auto stop = high_resolution_clock::now();
+            auto duration = duration_cast<microseconds>(stop - start);
+            cout << "Elapsed Time: " << duration.count() << " microseconds" << endl;
             for(int i = 0; i < 10; i++)
             {
                 cout << j << ". " << "Address: " <<housesSet[i].GetAddress() << endl;
@@ -304,7 +314,11 @@ int main() {
             cout << "----------" << endl;
 
             //will include chronos clock to calcualte how fast the function takes to execute
+            auto start = high_resolution_clock::now();
             shellSortOnLocation(housesSet);
+            auto stop = high_resolution_clock::now();
+            auto duration = duration_cast<microseconds>(stop - start);
+            cout << "Elapsed Time: " << duration.count() << " microseconds" << endl;
             for(int i = 0; i < 10; i++)
             {
                 cout << k << ". " << "Address: " <<housesSet[i].GetAddress() << endl;
