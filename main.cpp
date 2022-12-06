@@ -114,18 +114,7 @@ void mergeSortOnPrice(vector<Houses>& vec, int begin, int end){
     }
 
 }
-void mergeSortOnLocation(vector<Houses>& vec, int begin, int end)
-{
-    int mid = 0;
-    int add = begin + end;
-    if(begin < end) // it will end when they both equal each other
-    {
-        mid = add/2;
-        mergeSortOnLocation(vec, begin, mid); // performs merge sort on the first half of the vector
-        mergeSortOnLocation(vec, mid + 1, end); // performs merge sort on the second half of the vector
-        mergePrice(vec, begin, mid, end);
-    }
-}
+
 void mergeLocation(vector<Houses>& vec, int left, int middle, int right)
 {
     int leftS = middle - left + 1; // left size of the array
@@ -164,6 +153,20 @@ void mergeLocation(vector<Houses>& vec, int left, int middle, int right)
         vec[merge++] = rightVec[rightIndex++];
     }
 }
+
+void mergeSortOnLocation(vector<Houses>& vec, int begin, int end)
+{
+    int mid = 0;
+    int add = begin + end;
+    if(begin < end) // it will end when they both equal each other
+    {
+        mid = add/2;
+        mergeSortOnLocation(vec, begin, mid); // performs merge sort on the first half of the vector
+        mergeSortOnLocation(vec, mid + 1, end); // performs merge sort on the second half of the vector
+        mergeLocation(vec, begin, mid, end);
+    }
+}
+
 
 void shellSortOnPrice(vector<Houses>& houses)
 {
