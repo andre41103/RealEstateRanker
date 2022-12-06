@@ -28,25 +28,25 @@ void GetData(string filepath, vector<Houses>& housesset)
             string tempRadius;
             string tempBeds;
             string tempBaths;
-            getline(stream,firstParenthesis, '"');
+            getline(stream,firstParenthesis, '"'); //since the file has the addresses with parenthesis, this gets rid of the first one
 
             getline(stream, address, '"'); //ends at second parenthesis
 
-            getline(stream, eliminateComma, ',');
+            getline(stream, eliminateComma, ','); // removes the comma
 
-            getline(stream, tempPrice, ',');
+            getline(stream, tempPrice, ','); // saves the price
             price = stoi(tempPrice);
 
-            getline(stream, tempRadius, ',');
+            getline(stream, tempRadius, ','); // saves the radius
             radius = stoi(tempRadius);
 
-            getline(stream, tempBeds, ',');
+            getline(stream, tempBeds, ','); // saves the beds
             beds = stoi(tempBeds);
 
-            getline(stream, tempBaths);
+            getline(stream, tempBaths); //saves the baths
             baths = stoi(tempBaths);
 
-            Houses set(address, price, radius, beds, baths);
+            Houses set(address, price, radius, beds, baths); //makes a house object with all these features
             housesset.push_back(set);
 
 
@@ -64,7 +64,7 @@ void PrintData(vector<Houses>& housesSet)
         cout << "Address: " <<  housesSet[i].GetAddress() << " :: Price: " << housesSet[i].GetPrice() << endl;
     }
 }
-void mergePrice(vector<Houses>& vec, int left, int middle, int right)
+void mergePrice(vector<Houses>& vec, int left, int middle, int right) // reference pseudocode from sorting discussion slides
 {
     int leftS = middle - left + 1; // left size of the array
     int rightS = right - middle; // right size of the array
@@ -93,7 +93,7 @@ void mergePrice(vector<Houses>& vec, int left, int middle, int right)
             vec[merge++] = rightVec[rightIndex++];
         }
     }
-    while(leftIndex < leftS)
+    while(leftIndex < leftS) //checking and inserting the leftovers
     {
         vec[merge++] = leftVec[leftIndex++];
     }
@@ -120,8 +120,8 @@ void mergeLocation(vector<Houses>& vec, int left, int middle, int right)
     int leftS = middle - left + 1; // left size of the array
     int rightS = right - middle; // right size of the array
 
-    vector<Houses> leftVec;
-    vector<Houses> rightVec;
+    vector<Houses> leftVec; //makes left vector
+    vector<Houses> rightVec; //makes right vector
 
     for(int i = 0; i < leftS; i++)
     {
@@ -136,7 +136,7 @@ void mergeLocation(vector<Houses>& vec, int left, int middle, int right)
     int merge = left;
     while(leftIndex < leftS && rightIndex < rightS) //checking indexes
     {
-        if(leftVec[leftIndex].GetRadius() <= rightVec[rightIndex].GetRadius())
+        if(leftVec[leftIndex].GetRadius() <= rightVec[rightIndex].GetRadius()) //merging them 
         {
             vec[merge++] = leftVec[leftIndex++];
         }
@@ -144,11 +144,11 @@ void mergeLocation(vector<Houses>& vec, int left, int middle, int right)
             vec[merge++] = rightVec[rightIndex++];
         }
     }
-    while(leftIndex < leftS)
+    while(leftIndex < leftS) //checks the leftovers
     {
         vec[merge++] = leftVec[leftIndex++];
     }
-    while(rightIndex < rightS)
+    while(rightIndex < rightS) //checks the leftovers
     {
         vec[merge++] = rightVec[rightIndex++];
     }
@@ -160,7 +160,7 @@ void mergeSortOnLocation(vector<Houses>& vec, int begin, int end)
     int add = begin + end;
     if(begin < end) // it will end when they both equal each other
     {
-        mid = add/2;
+        mid = add/2; //getting the middle
         mergeSortOnLocation(vec, begin, mid); // performs merge sort on the first half of the vector
         mergeSortOnLocation(vec, mid + 1, end); // performs merge sort on the second half of the vector
         mergeLocation(vec, begin, mid, end);
@@ -168,24 +168,24 @@ void mergeSortOnLocation(vector<Houses>& vec, int begin, int end)
 }
 
 
-void shellSortOnPrice(vector<Houses>& houses)
+void shellSortOnPrice(vector<Houses>& houses) //reference to sorting discussion slides
 {
-
-    //int newLoc = 0;
-    for(int gap = houses.size()/2; gap > 0; gap /= 2){
-        for(int i = gap; i < houses.size(); i++){
+    
+    int newLoc = 0;
+    for(int gap = houses.size()/2; gap > 0; gap /= 2){ // lowers the gap
+        for(int i = gap; i < houses.size(); i++){ //performs the insertion sort
             Houses temp = houses[i];
-            int newLoc;
+            newLoc = 0;
 
-            for(newLoc = i; newLoc >= gap && houses[newLoc - gap].GetPrice() > temp.GetPrice(); newLoc -= gap){
+            for(newLoc = i; newLoc >= gap && houses[newLoc - gap].GetPrice() > temp.GetPrice(); newLoc -= gap){ //move sorted elements to correct position
                 houses[newLoc] = houses[newLoc - gap];
             }
 
-            houses[newLoc]= temp;
+            houses[newLoc]= temp; // puts the element in the correct position
         }
     }
 }
-void shellSortOnLocation(vector<Houses>& houses)
+void shellSortOnLocation(vector<Houses>& houses) 
 {
     int newLoc = 0;
     for(int gap = houses.size()/2; gap > 0; gap /= 2){
@@ -231,9 +231,13 @@ int main() {
         //call merge and shell sort on price
         if(sortSelection == 1)
         {
+            cout << "City: " << city << endl;
+            cout << "----------" << endl;
             int j = 1;
+            //will include chronos clock to calcualte how fast the function takes to execute
+
             mergeSortOnPrice(housesSet, 0, housesSet.size()-1);
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < 10; i++) //prints out the top 10 houses
             {
                 cout << j << ". " <<"Address: " <<housesSet[i].GetAddress() << endl;
                 cout << "Price: " << housesSet[i].GetPrice() << endl;
@@ -246,9 +250,13 @@ int main() {
         }
         else if(sortSelection == 2)
         {
+            cout << "City: " << city << endl;
+            cout << "----------" << endl;
             int k = 1;
+            //will include chronos clock to calcualte how fast the function takes to execute
+
             shellSortOnPrice(housesSet);
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < 10; i++) //prints out the top 10 houses
             {
                 cout << k << ". " <<"Address: " <<housesSet[i].GetAddress() << endl;
                 cout << "Price: " << housesSet[i].GetPrice() << endl;
@@ -262,20 +270,24 @@ int main() {
         }
 
     }
-    else if(prioritySelection == 2)
+    else if(prioritySelection == 2) //selected location as priority
     {
         int sort = 0;
         cout << "Select: " << endl;
         cout << "1. Ranking using Merge Sort" << endl;
         cout << "2. Ranking using Shell Sort" << endl;
         cin >> sort;
-        if(sort == 1)
+        if(sort == 1) //using merge sort on location
         {
             int j = 1;
+            cout << "City: " << city << endl;
+            cout << "----------" << endl;
+            //will include chronos clock to calcualte how fast the function takes to execute
+
             mergeSortOnLocation(housesSet, 0, housesSet.size()-1);
             for(int i = 0; i < 10; i++)
             {
-                cout << j << ". " <<"Address: " <<housesSet[i].GetAddress() << endl;
+                cout << j << ". " << "Address: " <<housesSet[i].GetAddress() << endl;
                 cout << "Price: " << housesSet[i].GetPrice() << endl;
                 cout << "Radius: " << housesSet[i].GetRadius() << endl;
                 cout << "Beds: " <<  housesSet[i].GetBeds() << endl;
@@ -285,13 +297,17 @@ int main() {
                 ++j;
             }
         }
-        else if(sort == 2)
+        else if(sort == 2) //using shell sort on location 
         {
             int k = 1;
+            cout << "City: " << city << endl;
+            cout << "----------" << endl;
+
+            //will include chronos clock to calcualte how fast the function takes to execute
             shellSortOnLocation(housesSet);
             for(int i = 0; i < 10; i++)
             {
-                cout << k << ". " <<"Address: " <<housesSet[i].GetAddress() << endl;
+                cout << k << ". " << "Address: " <<housesSet[i].GetAddress() << endl;
                 cout << "Price: " << housesSet[i].GetPrice() << endl;
                 cout << "Radius: " << housesSet[i].GetRadius() << endl;
                 cout << "Beds: " <<  housesSet[i].GetBeds() << endl;
@@ -302,8 +318,6 @@ int main() {
             }
         }
     }
-
-    //PrintData(housesSet);
 
     return 0;
 }
