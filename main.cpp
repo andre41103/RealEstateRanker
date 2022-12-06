@@ -253,7 +253,7 @@ int main() {
             cout << "City: " << city << endl;
             cout << "----------" << endl;
             int k = 1;
-            //will include chronos clock to calcualte how fast the function takes to execute
+            //will include chronos clock to calculate how fast the function takes to execute
 
             shellSortOnPrice(housesSet);
             for(int i = 0; i < 10; i++) //prints out the top 10 houses
